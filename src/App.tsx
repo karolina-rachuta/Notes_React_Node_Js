@@ -88,6 +88,17 @@ function App() {
     setSelectedNote(null);
   }
 
+  const deleteNote = (
+    event: React.FormEvent,
+    noteId: number
+  ) => {
+    event.stopPropagation();
+    const updatedNotes = notes.filter(
+      (note) => note.id != noteId
+    );
+    setNotes(updatedNotes);
+
+  }
   return (
     <div className="app-container">
       <form
@@ -120,7 +131,7 @@ function App() {
             onClick={() => handleNoteClick(note)}
             key={note.id}>
             <div className="notes-header">
-              <button>x</button>
+              <button onClick={(e) => deleteNote(e, note.id)}>x</button>
             </div>
             <h2>{note.title}</h2>
             <p>{note.content}</p>
