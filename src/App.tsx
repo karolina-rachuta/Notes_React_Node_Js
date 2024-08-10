@@ -40,11 +40,16 @@ function App() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleNoteClick = (note: Note) => {
+    setSelectedNote(note);
+    setTitle(note.title);
+    setContent(note.content);
+  };
+
+  const handleAddNote = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('title', title);
-    console.log('content', content);
 
     const newNote: Note = {
       id: notes.length + 1,
@@ -57,12 +62,37 @@ function App() {
     setContent("");
   };
 
+  const handleUpdateNote = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!selectedNote) {
+      return;
+    }
+    const updatedNote: Note = {
+      id: selectedNote.id,
+      title: title,
+      content: content,
+    };
+
+    const updatesNotesList = notes.map((note) => (
+      note.id === selectedNote.id ? updatedNote : note
+    ));
+    setNotes(updatesNotesList);
+    setTitle("");
+    setContent("");
+    setSelectedNote(null);
+  };
+
+  const handleCancel = () => {
+    setTitle("");
+    setContent("");
+    setSelectedNote(null);
+  }
 
   return (
     <div className="app-container">
       <form
         className="note-form"
-        onSubmit={(e) => handleSubmit(e)}>
+        onSubmit={(e) => selectedNote ? handleUpdateNote(e) : handleAddNote(e)}>
         <input
           value={title}
           placeholder="title"
@@ -74,16 +104,26 @@ function App() {
           placeholder="Content"
           rows={10}
           required></textarea>
-        <button type="submit">Add note</button>
+
+        {selectedNote ? (
+          <div className="edit-buttons">
+            <button type="submit" onClick={(e) => handleUpdateNote(e)}>Save</button>
+            <button type="submit" onClick={handleCancel}>Cancel</button>
+          </div>
+        ) : (
+          <button type="submit">Add note</button>
+        )}
       </form>
       <div className="notes-grid">
-        {notes.map(({ id, title, content }) => (
-          <div className="notes-item" key={id}>
+        {notes.map((note) => (
+          <div className="notes-item"
+            onClick={() => handleNoteClick(note)}
+            key={note.id}>
             <div className="notes-header">
               <button>x</button>
             </div>
-            <h2>{title}</h2>
-            <p>{content}</p>
+            <h2>{note.title}</h2>
+            <p>{note.content}</p>
           </div>
         )
         )};
