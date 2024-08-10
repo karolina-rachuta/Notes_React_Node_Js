@@ -1,0 +1,16 @@
+body {
+  margin: 20px;
+  background-color: lightgray;
+}
+
+.app-container {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .app-container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px
+  }
+}

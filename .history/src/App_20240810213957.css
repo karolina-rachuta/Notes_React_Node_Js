@@ -53,7 +53,7 @@ h2 {
 .note-form {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
 }
 
 textarea,
@@ -77,3 +77,4 @@ input {
   background-color: rgb(106, 175, 198);
   cursor: pointer;
 }
+

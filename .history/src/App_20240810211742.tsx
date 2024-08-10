@@ -3,14 +3,21 @@ import './App.css';
 function App() {
   return (
     <div className="app-container">
-      <form className="note-form">
+      <form action="note-form">
         <input
+          type="text"
           placeholder="title"
-          required/>
+          value=""
+          required
+        />
         <textarea
           placeholder="Content"
+          name=""
+          id=""
+          cols={20}
           rows={10}
-          required></textarea>
+          required
+        ></textarea>
         <button type="submit">Add note</button>
       </form>
       <div className="notes-grid">
@@ -20,8 +27,10 @@ function App() {
           </div>
           <h2>Note Title</h2>
           <p>Note Content</p>
+
         </div>
       </div>
+
     </div>
   );
 }

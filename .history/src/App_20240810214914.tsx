@@ -3,7 +3,7 @@ import './App.css';
 function App() {
   return (
     <div className="app-container">
-      <form className="note-form">
+      <form action="note-form">
         <input
           placeholder="title"
           required/>
