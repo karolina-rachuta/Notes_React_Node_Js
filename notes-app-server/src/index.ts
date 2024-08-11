@@ -33,9 +33,8 @@ app.put("/api/notes/:id", async (req, res) => {
   const { title, content } = req.body;
   const id = parseInt(req.params.id);
 
-  if(!title || !content) {
-    return res
-    .status(400).send("title and content fields required");
+  if (!title || !content) {
+    return res.status(400).send("title and content fields required");
   }
 
   if (!id || isNaN(id)) {
@@ -49,6 +48,22 @@ app.put("/api/notes/:id", async (req, res) => {
     res.json(updatedNote);
   } catch (error) {
     res.status(500).send("Oops something went wrong");
+  }
+});
+
+app.delete("/api/notes/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  if (!id || isNaN(id)) {
+    return res.status(400).send("Not valid id");
+  }
+  try {
+    const deletedNote = await prisma.note.delete({
+      where: { id },
+    });
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).send("something wrong");
   }
 });
 
