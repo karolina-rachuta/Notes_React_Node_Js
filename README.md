@@ -1,5 +1,5 @@
 # Notes React + Node js
-App to create, edit, delete the notes.
+App to create, edit and delete the notes.
 
 ## Tech Stack:
 - React
@@ -10,7 +10,7 @@ App to create, edit, delete the notes.
 - RWD
 
 ## How to run:
-- `git clone git@github.com:karolina-rachuta/Verti_RWD.git`
+- `git clone git@github.com:karolina-rachuta/Notes_React_Node_Js.git`
 - `npm install`
 - `cd notes-app-server` -> `npm install`
 - `npm start`
