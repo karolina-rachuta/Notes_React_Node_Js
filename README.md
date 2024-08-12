@@ -1,28 +1,25 @@
 # Notes React + Node js
+App to create, edit, delete the notes.
 
-## Commands:
-###notes-app-ui:
-```bash
-npx create-react-app . --template typescript
-```
+## Tech Stack:
+- React
+- CSS
+- Prisma
+- Supabase
+- Typescript
+- RWD
+
+## How to run:
+- `git clone git@github.com:karolina-rachuta/Verti_RWD.git`
+- `npm install`
+- `cd notes-app-server` -> `npm install`
+- `npm start`
+- `cd notes-app-server` -> `npm start`
+- profit!
 
 
-###notes-app-server:
-```bash
-npm init 
-# entry point: ./src/index.ts
+## Screenshots:
+![screenshot](./src/assets/app.png)
 
-npm i ts-node typescript nodemon @types/cors @types/express @types/node --save-dev
-
-npm i @prisma/client cors express prisma
-
-npx tsc --init
-
-# after creating endpoint (notes-full-app):
-# curl to test APIs quickly
-curl localhost:5000/api/notes
-
-npx prisma init
-#DATABASE_URL copied from supabase connect file, had to change 
-npx prisma db push
-```
+## Acknowledgment
+Thanks to Chris Blakely
